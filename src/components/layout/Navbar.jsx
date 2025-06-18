@@ -5,10 +5,10 @@ import Logo from "../../assets/logo.png";
 
 const Navbar = () => {
   return (
-    <header className="px-4 py-8">
+    <header className=" py-8">
       <nav
         aria-label="Main navigation"
-        className="max-w-7xl mx-auto flex items-center justify-between"
+        className=" flex items-center justify-between"
       >
         {/* Logo à gauche */}
         <Link to="/">
