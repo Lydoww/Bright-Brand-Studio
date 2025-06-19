@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    setIsMenuOpen(false); // ferme le menu mobile au changement de page
+    setIsMenuOpen(false);
   }, [location]);
 
   return (
@@ -47,7 +47,7 @@ const Navbar = () => {
             alt="logo of bright brand studio"
             className={`transition-all duration-300 ${
               isScrolled ? "w-14" : "w-32"
-            } md:w-32`}
+            } `}
           />
         </Link>
 
