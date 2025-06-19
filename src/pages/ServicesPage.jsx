@@ -1,4 +1,5 @@
 import Carousel from "../components/services/Carousel";
+import Marque from "../components/services/Marque";
 
 const ServicesPage = () => {
   return (
@@ -6,10 +7,11 @@ const ServicesPage = () => {
       aria-labelledby="services-title"
       className="min-h-[calc(100vh-160px)] flex flex-col items-center text-center bg-[#F5F0E9]"
     >
+      <Marque />
       <div className="max-w-[1280px] mx-auto px-4">
         <h1
           id="services-title"
-          className="font-gulfs mt-32 text-4xl md:text-6xl text-[#5B4739]"
+          className="font-gulfs mt-12 text-4xl md:text-6xl text-[#5B4739]"
         >
           My services
         </h1>
