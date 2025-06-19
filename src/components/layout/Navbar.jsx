@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import linkedin from "../../assets/linkedin.svg";
 import email from "../../assets/email.svg";
@@ -8,7 +7,6 @@ import Logo from "../../assets/logo.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,9 +21,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
+  const handleClick = (targetId) => {
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <header
@@ -40,7 +42,7 @@ const Navbar = () => {
         className="flex items-center justify-between"
       >
         {/* Logo */}
-        <Link to="/">
+        <a href="#home">
           <img
             src={Logo}
             width={120}
@@ -49,19 +51,19 @@ const Navbar = () => {
               isScrolled ? "w-14" : "w-32"
             } `}
           />
-        </Link>
+        </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-6">
             <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
-              <NavLink to="/services" label="Services" />
+              <Anchor label="Services" target="services" />
             </li>
             <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
-              <NavLink to="/about" label="About me" />
+              <Anchor label="About me" target="about" />
             </li>
             <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
-              <NavLink to="/contact" label="Contact" />
+              <Anchor label="Contact" target="contact" />
             </li>
           </ul>
 
@@ -113,29 +115,17 @@ const Navbar = () => {
         }`}
       >
         <nav className="mt-4 px-4 py-4 flex flex-col space-y-4">
-          <NavLink
-            to="/"
-            label="Home"
-            isMobile
-            onClick={() => setIsMenuOpen(false)}
-          />
-          <NavLink
-            to="/services"
+          <MobileAnchor label="Home" target="home" onClick={handleClick} />
+          <MobileAnchor
             label="Services"
-            isMobile
-            onClick={() => setIsMenuOpen(false)}
+            target="services"
+            onClick={handleClick}
           />
-          <NavLink
-            to="/about"
-            label="About me"
-            isMobile
-            onClick={() => setIsMenuOpen(false)}
-          />
-          <NavLink
-            to="/contact"
+          <MobileAnchor label="About me" target="about" onClick={handleClick} />
+          <MobileAnchor
             label="Contact"
-            isMobile
-            onClick={() => setIsMenuOpen(false)}
+            target="contact"
+            onClick={handleClick}
           />
         </nav>
       </div>
@@ -143,22 +133,25 @@ const Navbar = () => {
   );
 };
 
-const NavLink = ({ to, label, isMobile = false, onClick }) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-
+const Anchor = ({ label, target }) => {
   return (
-    <Link
-      to={to}
-      onClick={onClick}
-      className={`
-        ${isMobile ? "py-2 block text-lg" : "text-sm"}
-        font-medium transition-colors
-        ${isActive ? "text-[#F98948]" : "text-[#5B4739] hover:text-[#F98948]"}
-      `}
+    <a
+      href={`#${target}`}
+      className="text-sm font-medium text-[#5B4739] hover:text-[#F98948] transition-colors"
     >
       {label}
-    </Link>
+    </a>
+  );
+};
+
+const MobileAnchor = ({ label, target, onClick }) => {
+  return (
+    <button
+      onClick={() => onClick(target)}
+      className="py-2 text-left text-lg font-medium text-[#5B4739] hover:text-[#F98948] transition-colors"
+    >
+      {label}
+    </button>
   );
 };
 

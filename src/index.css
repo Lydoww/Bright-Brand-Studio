@@ -19,3 +19,7 @@ h1,
 h2 {
   font-family: "Gulfs Display", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}

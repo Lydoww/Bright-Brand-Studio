@@ -45,7 +45,7 @@ const services = [
 
 const Carousel = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-6 m-4 mt-12">
+    <div className="flex flex-wrap justify-center gap-6 m-4 mt-12 [&>*:nth-child(odd)]:scale-95">
       {services.map((s, i) => (
         <Cart
           key={i}
