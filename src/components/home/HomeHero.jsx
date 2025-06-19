@@ -1,6 +1,6 @@
 const HomeHero = () => {
   return (
-    <section className="min-h-[calc(100vh-160px)] flex flex-col justify-end pb-10">
+    <section className="min-h-[calc(100vh-160px)] flex flex-col justify-end pb-8 md:pb-10">
       {" "}
       {/* justify-end + pb-20 pour espace du bas */}
       <div className="max-w-[1280px] mx-auto px-4 w-full">

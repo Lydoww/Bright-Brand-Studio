@@ -2,6 +2,19 @@
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Gulfs Display";
+  src: url("/fonts/GulfsDisplay-Normal.woff2") format("woff2"),
+    url("/fonts/GulfsDisplay-Normal.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-shrikhand: "Shrikhand", "sans-serif";
+}
+
+h1, h2 {
+  font-family: "Gulfs Display", sans-serif;
 }
