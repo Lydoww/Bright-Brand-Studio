@@ -1,11 +1,41 @@
 import linkedin from "../../assets/linkedin.svg";
 import email from "../../assets/email.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  const toggleMeny = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
   return (
-    <header className=" py-8">
+    <header
+      className={`py-8 px-12 fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled || isMenuOpen
+          ? " backdrop-blur-sm shadow-md"
+          : "bg-transparent"
+      }`}
+    >
       <nav
         aria-label="Main navigation"
         className=" flex items-center justify-between"
