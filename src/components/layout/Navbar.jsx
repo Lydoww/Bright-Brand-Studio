@@ -1,15 +1,16 @@
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import linkedin from "../../assets/linkedin.svg";
 import email from "../../assets/email.svg";
-import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const toggleMeny = () => {
+  const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -19,47 +20,52 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // ferme le menu mobile au changement de page
   }, [location]);
 
   return (
     <header
       className={`py-8 px-12 fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled || isMenuOpen
-          ? " backdrop-blur-sm shadow-md"
+          ? "backdrop-blur-sm shadow-md "
           : "bg-transparent"
       }`}
     >
       <nav
         aria-label="Main navigation"
-        className=" flex items-center justify-between"
+        className="flex items-center justify-between"
       >
-        {/* Logo à gauche */}
+        {/* Logo */}
         <Link to="/">
-          <img src={Logo} width={120} alt="logo of bright brand studio" />
+          <img
+            src={Logo}
+            width={120}
+            alt="logo of bright brand studio"
+            className={`transition-all duration-300 ${
+              isScrolled ? "w-14" : "w-32"
+            } md:w-32`}
+          />
         </Link>
-        {/* Conteneur de droite : liens + icônes */}
-        <div className="flex items-center space-x-8">
-          {/* Liens */}
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-6">
-            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] text-[#5B4739] hover:scale-105 hover:text-[#F98948] transition-all">
-              <Link to="/services">Services</Link>
+            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
+              <NavLink to="/services" label="Services" />
             </li>
-            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] text-[#5B4739] hover:scale-105 hover:text-[#F98948] transition-all">
-              <Link to="/about">About me</Link>
+            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
+              <NavLink to="/about" label="About me" />
             </li>
-            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] text-[#5B4739] hover:scale-105 hover:text-[#F98948] transition-all">
-              <Link to="/contact">Contact</Link>
+            <li className="border rounded-3xl px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all">
+              <NavLink to="/contact" label="Contact" />
             </li>
           </ul>
 
-          {/* Icônes */}
+          {/* Icons */}
           <div className="flex space-x-4">
             <a
               href="https://linkedin.com/in/audrey"
@@ -69,7 +75,7 @@ const Navbar = () => {
             >
               <img
                 src={linkedin}
-                alt=""
+                alt="LinkedIn"
                 width={24}
                 height={24}
                 className="hover:scale-105 transition-transform"
@@ -81,7 +87,7 @@ const Navbar = () => {
             >
               <img
                 src={email}
-                alt=""
+                alt="Email"
                 width={24}
                 height={24}
                 className="hover:scale-105 transition-transform"
@@ -89,8 +95,70 @@ const Navbar = () => {
             </a>
           </div>
         </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 text-[#5B4739] rounded-lg hover:bg-slate-200 transition-colors"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
       </nav>
+
+      {/* Mobile Navigation */}
+      <div
+        className={`md:hidden transition-all duration-300 overflow-hidden ${
+          isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="mt-4 px-4 py-4 flex flex-col space-y-4">
+          <NavLink
+            to="/"
+            label="Home"
+            isMobile
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavLink
+            to="/services"
+            label="Services"
+            isMobile
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavLink
+            to="/about"
+            label="About me"
+            isMobile
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavLink
+            to="/contact"
+            label="Contact"
+            isMobile
+            onClick={() => setIsMenuOpen(false)}
+          />
+        </nav>
+      </div>
     </header>
+  );
+};
+
+const NavLink = ({ to, label, isMobile = false, onClick }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`
+        ${isMobile ? "py-2 block text-lg" : "text-sm"}
+        font-medium transition-colors
+        ${isActive ? "text-[#F98948]" : "text-[#5B4739] hover:text-[#F98948]"}
+      `}
+    >
+      {label}
+    </Link>
   );
 };
 
