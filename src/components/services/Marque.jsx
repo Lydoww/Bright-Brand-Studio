@@ -9,20 +9,21 @@ function Marque() {
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         width: '100%',
-        height: '60px', // Réduit pour mobile
+        height: '60px',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
         color: '#F98948',
-        fontSize: 'clamp(20px, 5vw, 38px)', // Responsive font-size
+        fontSize: 'clamp(20px, 5vw, 38px)',
         fontWeight: 'bold',
+        fontFamily: 'Montserrat',
       }}
-      className='sm:h-[80px] lg:h-[100px]' // Heights responsive avec Tailwind
+      className='sm:h-[80px] lg:h-[100px]'
     >
       <div
         style={{
           display: 'inline-flex',
-          animation: 'marquee 15s linear infinite', // Plus lent pour mobile
+          animation: 'marquee 15s linear infinite',
         }}
         className='sm:animate-[marquee_12s_linear_infinite] lg:animate-[marquee_10s_linear_infinite]' // Vitesses différentes selon écran
       >

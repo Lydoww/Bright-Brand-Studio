@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import linkedin from '../../assets/linkedin.svg';
 import email from '../../assets/email.svg';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo-BBS.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

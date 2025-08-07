@@ -10,8 +10,10 @@ const Cart = ({
 }) => {
   return (
     <div
-      className={`relative flex flex-col text-left border border-black rounded-lg shadow-md p-6 pb-16 w-80 transition-all duration-300 ease-in-out ${
-        isExpanded ? 'bg-[var(--color-blue)] h-auto z-10' : 'h-64 z-0'
+      className={`flex flex-col text-left border border-black rounded-lg shadow-md p-6 pb-16 w-80 transition-all duration-300 ease-in-out ${
+        isExpanded 
+          ? 'bg-[var(--color-blue)] absolute top-0 left-0 z-50 shadow-2xl h-auto' 
+          : 'relative z-10 h-64'
       }`}
     >
       <h3
@@ -24,7 +26,7 @@ const Cart = ({
 
       <p
         className={`mb-4 ${
-          isExpanded ? 'text-[var(--color-cream)]!' : 'text-[#5B4739]'
+          isExpanded ? 'text-[var(--color-cream)]' : 'text-[#5B4739]'
         }`}
       >
         {description}
@@ -32,7 +34,7 @@ const Cart = ({
 
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isExpanded ? 'max-h-96 opacity-100 ' : 'max-h-0 opacity-0'
+          isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <h4
@@ -57,7 +59,7 @@ const Cart = ({
 
       <button
         onClick={onToggle}
-        className={`absolute bottom-4 right-4 p-2 rounded-full cursor-pointer ${
+        className={`absolute bottom-4 right-4 p-2 rounded-full cursor-pointer group hover:bg-[var(--color-blue)] hover:border-none transition-all duration-300 ${
           isExpanded
             ? 'border border-[var(--color-cream)]'
             : 'border border-black'
@@ -65,12 +67,9 @@ const Cart = ({
         aria-label={isExpanded ? 'Réduire' : 'Développer'}
       >
         {isExpanded ? (
-          <X
-            size={16}
-            className='text-[var(--color-cream)] border-[var(color-cream)]'
-          />
+          <X size={16} className='text-[var(--color-cream)] group-hover:text-white transition-colors duration-300' />
         ) : (
-          <Plus size={16} className='text-black' />
+          <Plus size={16} className='text-black group-hover:text-white transition-colors duration-300' />
         )}
       </button>
     </div>
