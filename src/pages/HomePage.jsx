@@ -8,20 +8,20 @@ const HomePage = () => {
   return (
     <>
       <Background>
-        <div id="home" className="max-w-[1280px] mx-auto px-4 pt-24">
+        <div id="home" className="max-w-[1440px] mx-auto">
           <HomeHero />
         </div>
       </Background>
 
-      <section id="services">
+      <section id="services" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-24">
         <ServicesPage />
       </section>
 
-      <section id="about">
+      <section id="about" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-24">
         <AboutPage />
       </section>
 
-      <section id="contact">
+      <section id="contact" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-24">
         <ContactPage />
       </section>
     </>

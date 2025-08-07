@@ -1,14 +1,8 @@
 const HomeHero = () => {
   return (
-    <section className="min-h-[calc(100vh-160px)] flex flex-col justify-end pb-8 md:pb-10">
-      {" "}
-      {/* justify-end + pb-20 pour espace du bas */}
-      <div className="max-w-[1280px] mx-auto px-4 w-full">
-        {" "}
-        {/* Conteneur aligné avec la Navbar */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-shrikhand text-[#2B59C3] leading-tight w-max">
-          {" "}
-          {/* w-max pour largeur contenu */}
+    <section className='min-h-screen flex flex-col justify-center lg:justify-start pt-20 sm:pt-24 lg:pt-0 pb-8 md:pb-16'>
+      <div className='max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full lg:pt-80 xl:pt-96'>
+        <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-shrikhand text-blue leading-tight lg:leading-none w-full text-left'>
           Strategy that feels human.
           <br />
           Brands that feel true.

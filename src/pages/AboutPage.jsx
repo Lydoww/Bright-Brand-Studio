@@ -6,34 +6,33 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-[#F5F0E9]">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-[#5B4739] italic text-4xl md:text-6xl mb-12 text-center md:text-left">
-          Who I am?
-        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Texte à gauche - même marge droite que l'image à gauche */}
           <div className="space-y-8">
-            <h2 className="text-3xl font-semibold text-[#5B4739]">
-              Hi, I'm Audrey!
-            </h2>
+            <p>Hi, </p>
+            <h1 className="text-3xl font-semibold text-[#5B4739]">
+              I'm Audrey
+            </h1>
 
-            <div className="space-y-6 text-lg text-gray-700">
+            <div className="space-y-6 text-lg text-[#5B4739]">
               <p>
-                After several years working in ethical fashion and brand marketing
-                — from co-founding a circular fashion brand to leading strategy
-                for sustainable concept stores — I realized that most
-                mission-driven brands don't need more content. They need clarity.
+                After several years working in ethical fashion and brand
+                marketing — from co-founding a circular fashion brand to leading
+                strategy for sustainable concept stores — I realized that most
+                mission-driven brands don't need more content. They need
+                clarity.
               </p>
 
               <p>
-                I created a strategy framework to help you root your vision, align
-                your voice, and grow without compromising your values.
+                I created a strategy framework to help you root your vision,
+                align your voice, and grow without compromising your values.
               </p>
             </div>
 
             <button
               type="button"
-              className="mt-4 px-8 py-3 bg-[#5B4739] text-white rounded-md hover:bg-[#4a3a2e] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#5B4739] focus:ring-opacity-50"
+              className=" rounded-full border font-semibold border-[#F98948] px-5 py-2 text-[#F98948] text-sm hover:bg-[#F98948] hover:text-white transition-colors"
               aria-label="Contact Audrey to work together"
             >
               Let's work together

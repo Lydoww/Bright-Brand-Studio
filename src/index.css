@@ -1,25 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=Shrikhand&display=swap");
-
-@import "tailwindcss";
-
-@font-face {
-  font-family: "Gulfs Display";
-  src: url("/fonts/GulfsDisplay-Normal.woff2") format("woff2"),
-    url("/fonts/GulfsDisplay-Normal.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@theme {
-  --font-shrikhand: "Shrikhand", "sans-serif";
-}
-
-h1,
-h2 {
-  font-family: "Gulfs Display", sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+@import 'tailwindcss';
 
 html {
   scroll-behavior: smooth;
+}
+
+:root {
+  --font-montserrat: 'Montserrat', 'sans-serif';
+  --font-chango: 'Chango', 'sans-serif';
+  --color-cream: #f5f0e9;
+  --color-blue: #2b59c3;
+  --color-orange: #f98948;
+  --color-brown: #433123;
+  --color-purple: #d4d3ea;
+}
+
+p {
+  font-size: 14px;
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  color: var(--color-brown);
+}
+
+h3 {
+  font-size: 23px;
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 37px;
+  font-family: var(--font-chango);
+  letter-spacing: -0.09em;
+}
+
+h1 {
+  font-size: 59px;
+  font-family: var(--font-chango);
+  letter-spacing: -0.09em;
+  color: var(--color-blue);
 }
