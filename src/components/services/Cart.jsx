@@ -10,9 +10,9 @@ const Cart = ({
 }) => {
   return (
     <div
-      className={`flex flex-col text-left border border-black rounded-lg shadow-md p-6 pb-16 w-80 transition-all duration-300 ease-in-out ${
-        isExpanded 
-          ? 'bg-[var(--color-blue)] absolute top-0 left-0 z-50 shadow-2xl h-auto' 
+      className={`flex flex-col text-left border border-black rounded-lg shadow-md p-6 pb-16 w-80 transition-all duration-700 ease-in-out ${
+        isExpanded
+          ? 'bg-[var(--color-blue)] relative z-20 shadow-2xl h-120'
           : 'relative z-10 h-64'
       }`}
     >
@@ -26,7 +26,7 @@ const Cart = ({
 
       <p
         className={`mb-4 ${
-          isExpanded ? 'text-[var(--color-cream)]' : 'text-[#5B4739]'
+          isExpanded ? 'text-[var(--color-cream)]!' : 'text-[#5B4739]'
         }`}
       >
         {description}
@@ -67,9 +67,15 @@ const Cart = ({
         aria-label={isExpanded ? 'Réduire' : 'Développer'}
       >
         {isExpanded ? (
-          <X size={16} className='text-[var(--color-cream)] group-hover:text-white transition-colors duration-300' />
+          <X
+            size={16}
+            className='text-[var(--color-cream)] group-hover:text-white transition-colors duration-300'
+          />
         ) : (
-          <Plus size={16} className='text-black group-hover:text-white transition-colors duration-300' />
+          <Plus
+            size={16}
+            className='text-black group-hover:text-white transition-colors duration-300'
+          />
         )}
       </button>
     </div>

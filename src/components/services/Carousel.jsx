@@ -3,6 +3,19 @@ import Cart from './Cart';
 
 const services = [
   {
+    title: 'Brand Strategy',
+    description:
+      'Helping brands define who they are, what they stand for, and how to express it.',
+    listHeader: 'Deliverables can include:',
+    list: [
+      'Brand positioning statements',
+      'Mission, vision, and values definition',
+      'Audience personas',
+      'Brand audits and competitor analysis',
+      'Strategic brand roadmaps',
+    ],
+  },
+  {
     title: 'Website optimization',
     description:
       'Enhancing website performance, UX and SEO to ensure your online presence is intuitive, effective, and drives measurable results.',
@@ -29,31 +42,19 @@ const services = [
     ],
   },
   {
-    title: 'Brand Strategy',
+    title: 'Content Strategy',
     description:
-      'Helping brands define who they are, what they stand for, and how to express it.',
+      'Crafting compelling content plans and brand stories that resonate with audiences, inspire action, and build lasting relationships.',
     listHeader: 'Deliverables can include:',
     list: [
-      'Brand positioning statements',
-      'Mission, vision, and values definition',
-      'Audience personas',
-      'Brand audits and competitor analysis',
-      'Strategic brand roadmaps',
+      'Marketing plans and editorial calendars',
+      'Brand storytelling frameworks',
+      'Website and social media copy',
+      'Email newsletter templates',
+      'Content performance reports',
     ],
   },
-  {
-    title: 'Content creation',
-    description:
-      "Creating engaging visual and written content that reflects your brand's tone, values, and audience — to inspire, connect, and convert.",
-    listHeader: 'Deliverables can include:',
-    list: [
-      'Social media visuals (posts, stories, carousels)',
-      'Canva templates for branded use',
-      'Creative direction for visual content',
-      'Copywriting for social captions or product pages',
-      'Light video content (reels, animations)',
-    ],
-  },
+
   {
     title: 'Visual Identity',
     description:
@@ -67,40 +68,66 @@ const services = [
       'Visual templates for social media or presentations',
     ],
   },
+
   {
-    title: 'Content Strategy',
+    title: 'Content creation',
     description:
-      'Crafting compelling content plans and brand stories that resonate with audiences, inspire action, and build lasting relationships.',
+      "Creating engaging visual and written content that reflects your brand's tone, values, and audience — to inspire, connect, and convert.",
     listHeader: 'Deliverables can include:',
     list: [
-      'Marketing plans and editorial calendars',
-      'Brand storytelling frameworks',
-      'Website and social media copy',
-      'Email newsletter templates',
-      'Content performance reports',
+      'Social media visuals (posts, stories, carousels)',
+      'Canva templates for branded use',
+      'Creative direction for visual content',
+      'Copywriting for social captions or product pages',
+      'Light video content (reels, animations)',
     ],
   },
 ];
 
+function splitIntoColumns(array, numColumns) {
+  const columns = Array.from({ length: numColumns }, () => []);
+  array.forEach((item, idx) => {
+    columns[idx % numColumns].push(item);
+  });
+  return columns;
+}
+
 const Carousel = () => {
   const [expandedCard, setExpandedCard] = useState(null);
+  const numColumns = 3;
+  const columns = splitIntoColumns(services, numColumns);
 
-  const handleToggle = (index) => {
-    setExpandedCard(expandedCard === index ? null : index);
+  const handleToggle = (colIdx, cardIdx) => {
+    if (
+      expandedCard &&
+      expandedCard[0] === colIdx &&
+      expandedCard[1] === cardIdx
+    ) {
+      setExpandedCard(null);
+    } else {
+      setExpandedCard([colIdx, cardIdx]);
+    }
   };
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 m-4 mt-12 justify-items-center'>
-      {services.map((service, index) => (
-        <div key={index} className='relative'>
-          <Cart
-            title={service.title}
-            description={service.description}
-            listHeader={service.listHeader}
-            list={service.list}
-            isExpanded={expandedCard === index}
-            onToggle={() => handleToggle(index)}
-          />
+    <div className='flex flex-col md:flex-row gap-6 m-4 mt-12 justify-center'>
+      {columns.map((column, colIdx) => (
+        <div key={colIdx} className='flex flex-col gap-6 items-center flex-1'>
+          {column.map((service, cardIdx) => (
+            <Cart
+              key={cardIdx}
+              title={service.title}
+              description={service.description}
+              listHeader={service.listHeader}
+              list={service.list}
+              isExpanded={
+                expandedCard &&
+                expandedCard[0] === colIdx &&
+                expandedCard[1] === cardIdx
+              }
+              onToggle={() => handleToggle(colIdx, cardIdx)}
+            />
+          ))}
         </div>
       ))}
     </div>

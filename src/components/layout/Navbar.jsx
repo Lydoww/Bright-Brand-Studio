@@ -39,7 +39,7 @@ const Navbar = () => {
     >
       <nav
         aria-label='Main navigation'
-        className='flex items-center justify-between'
+        className='flex items-center justify-between '
       >
         {/* Logo */}
         <a href='#home' className='flex-shrink-0'>
