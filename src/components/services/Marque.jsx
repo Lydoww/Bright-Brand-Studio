@@ -14,24 +14,21 @@ function Marque() {
         alignItems: 'center',
         position: 'relative',
         color: '#F98948',
-        fontSize: 'clamp(20px, 5vw, 38px)',
+        fontSize: 'clamp(16px, 4vw, 38px)',
         fontWeight: 'bold',
         fontFamily: 'Montserrat',
       }}
-      className='sm:h-[80px] lg:h-[100px]'
+      className='h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px]'
     >
       <div
         style={{
           display: 'inline-flex',
-          animation: 'marquee 15s linear infinite',
+          animation: 'marquee 20s linear infinite',
         }}
-        className='sm:animate-[marquee_12s_linear_infinite] lg:animate-[marquee_10s_linear_infinite]' // Vitesses différentes selon écran
+        className='animate-[marquee_20s_linear_infinite] sm:animate-[marquee_15s_linear_infinite] md:animate-[marquee_12s_linear_infinite] lg:animate-[marquee_10s_linear_infinite]'
       >
-        {/* Première copie du texte */}
         <div style={{ whiteSpace: 'nowrap' }}>{text}&nbsp;&nbsp;&nbsp;</div>
-        {/* Deuxième copie du texte */}
         <div style={{ whiteSpace: 'nowrap' }}>{text}&nbsp;&nbsp;&nbsp;</div>
-        {/* Troisième copie pour assurer la continuité */}
         <div style={{ whiteSpace: 'nowrap' }}>{text}&nbsp;&nbsp;&nbsp;</div>
       </div>
 
