@@ -3,12 +3,12 @@ const Cart = ({ title, labels, description, image }) => {
 
   return (
     <div className='flex flex-col lg:flex-row border border-[var(--color-brown)] rounded-[15px] shadow-2xl'>
-      <div className='w-full lg:w-1/3 p-4 sm:p-6'>
-        <h3 className='text-2xl sm:text-3xl lg:text-[34px] color-[var(--color-brown)] mb-3 sm:mb-4'>
+      <div className='w-full lg:w-1/3 px-4 '>
+        <h3 className='text-2xl sm:text-3xl lg:text-[34px] color-[var(--color-brown)] mb-3 sm:mb-4 mt-2 xl:mt-4'>
           {title}
         </h3>
 
-        <ul className='flex flex-wrap gap-2 mb-3 sm:mb-4'>
+        <ul className='flex flex-wrap gap-2 sm:mb-4'>
           {arrayLabels.map((label, index) => {
             const adaptLabels = label.replace(/\s+/g, '-').toLowerCase();
             const addLabel = 'label-' + adaptLabels;

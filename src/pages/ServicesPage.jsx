@@ -5,7 +5,7 @@ const ServicesPage = () => {
   return (
     <main
       aria-labelledby='services-title'
-      className='min-h-[calc(100vh-160px)] flex flex-col items-center text-center bg-[#F5F0E9] py-8 sm:py-12 lg:py-16'
+      className='min-h-[calc(100vh-160px)] flex flex-col items-center text-center bg-[#F5F0E9] '
     >
       <Marque />
       <div className='max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8'>
@@ -15,9 +15,9 @@ const ServicesPage = () => {
         >
           SERVICES
         </h1>
-        <h3 className='mt-4 sm:mt-6 font-light max-w-3xl mx-auto text-lg sm:text-xl leading-7 text-[#5B4739] px-4'>
-          I help purpose-led brands clarify their message, refine their
-          strategy, and build stronger connections with their audience.
+        <h3 className='mt-4 sm:mt-6 font-light! max-w-3xl mx-auto text-lg sm:text-xl leading-7 text-[#5B4739] px-4'>
+          I help australian purpose-led brands clarify their message, refine
+          their strategy, and build stronger connections with their audience.
         </h3>
         <button
           type='button'
@@ -27,7 +27,7 @@ const ServicesPage = () => {
         </button>
       </div>
       <Carousel />
-      <h3 className='text-2xl sm:text-3xl lg:text-[37px] text-[var(--color-brown)] mb-12 sm:mb-16 lg:mb-20 max-w-4xl sm:max-w-5xl mt-8 leading-relaxed font-semibold px-4 sm:px-6'>
+      <h3 className='text-[41px]! lg:text-[37px]! text-[var(--color-brown)] mb-12 sm:mb-16 lg:mb-20 max-w-4xl sm:max-w-5xl lg:max-w-6xl mt-8 leading-12 font-semibold! px-4 sm:px-6'>
         And all of this, rooted in{' '}
         <span className='italic'>ethical and engaged values</span>, to build
         genuine trust with conscious consumers

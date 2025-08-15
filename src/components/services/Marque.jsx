@@ -14,11 +14,9 @@ function Marque() {
         alignItems: 'center',
         position: 'relative',
         color: '#F98948',
-        fontSize: 'clamp(16px, 4vw, 38px)',
-        fontWeight: 'bold',
         fontFamily: 'Montserrat',
       }}
-      className='h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px]'
+      className='h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] text-responsive'
     >
       <div
         style={{
@@ -33,6 +31,11 @@ function Marque() {
       </div>
 
       <style>{`
+      .text-responsive {
+          font-size: 41px;
+          margin-top: 10px;
+        }
+        
         @keyframes marquee {
           0% {
             transform: translateX(0);
