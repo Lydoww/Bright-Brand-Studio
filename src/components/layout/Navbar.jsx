@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import linkedin from '../../assets/linkedin.svg';
-import email from '../../assets/email.svg';
+import linkedin from '../../assets/linkedin.png';
+import email from '../../assets/email.png';
 import Logo from '../../assets/logo-BBS.png';
 
 const Navbar = () => {
@@ -15,11 +15,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   const handleClick = (targetId) => {
     const target = document.getElementById(targetId);
@@ -31,19 +34,19 @@ const Navbar = () => {
 
   return (
     <header
-      className={`py-4 sm:py-6 lg:py-8 fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled || isMenuOpen
+      className={`py-4  lg:py-8 fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled && !isMenuOpen
           ? 'backdrop-blur-sm shadow-md'
+          : isMenuOpen
+          ? 'bg-[var(--color-cream)] shadow-md'
           : 'bg-transparent'
       }`}
     >
-      {/* Conteneur interne pour gérer le padding correctement */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className='max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8'>
         <nav
           aria-label='Main navigation'
           className='flex items-center justify-between'
         >
-          {/* Logo */}
           <a href='#home' className='flex-shrink-0'>
             <img
               src={Logo}
@@ -57,13 +60,13 @@ const Navbar = () => {
           {/* Desktop Links */}
           <div className='hidden lg:flex items-center space-x-6 xl:space-x-8'>
             <ul className='flex space-x-4 xl:space-x-6'>
-              <li className='border rounded-2xl px-4 xl:px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all group'>
+              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
                 <Anchor label='Services' target='services' />
               </li>
-              <li className='border rounded-2xl px-4 xl:px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all group'>
+              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
                 <Anchor label='About me' target='about' />
               </li>
-              <li className='border rounded-2xl px-4 xl:px-6 py-1 font-semibold border-[#5B4739] hover:border-[#F98948] hover:scale-105 transition-all group'>
+              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
                 <Anchor label='Review' target='review' />
               </li>
             </ul>
@@ -117,18 +120,26 @@ const Navbar = () => {
             isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <nav className='mt-4 px-4 py-4 flex flex-col space-y-4 backdrop-blur-sm rounded-lg shadow-lg'>
+          <nav className='flex flex-col  rounded-lg shadow-lg'>
             <MobileAnchor label='Home' target='home' onClick={handleClick} />
             <MobileAnchor
               label='Services'
               target='services'
               onClick={handleClick}
             />
-            <MobileAnchor label='About me' target='about' onClick={handleClick} />
-            <MobileAnchor label='Review' target='review' onClick={handleClick} />
+            <MobileAnchor
+              label='About me'
+              target='about'
+              onClick={handleClick}
+            />
+            <MobileAnchor
+              label='Review'
+              target='review'
+              onClick={handleClick}
+            />
 
             {/* Mobile Icons */}
-            <div className='flex justify-center space-x-6 pt-4'>
+            <div className='flex justify-center space-x-4 pt-6 mt-4'>
               <a
                 href='https://linkedin.com/in/audrey'
                 target='_blank'
@@ -136,26 +147,14 @@ const Navbar = () => {
                 aria-label='LinkedIn profile of Audrey'
                 className='p-2'
               >
-                <img
-                  src={linkedin}
-                  alt='LinkedIn'
-                  width={28}
-                  height={28}
-                  className='hover:scale-105 transition-transform'
-                />
+                <img src={linkedin} alt='LinkedIn' width={28} height={28} />
               </a>
               <a
                 href='mailto:audrey@example.com'
                 aria-label='Send email to Audrey'
                 className='p-2'
               >
-                <img
-                  src={email}
-                  alt='Email'
-                  width={28}
-                  height={28}
-                  className='hover:scale-105 transition-transform'
-                />
+                <img src={email} alt='Email' width={28} height={28} />
               </a>
             </div>
           </nav>
@@ -167,10 +166,7 @@ const Navbar = () => {
 
 const Anchor = ({ label, target }) => {
   return (
-    <a
-      href={`#${target}`}
-      className='text-sm font-medium text-[#5B4739] group-hover:text-[#F98948] transition-colors'
-    >
+    <a href={`#${target}`} className='text-sm font-medium  transition-colors'>
       {label}
     </a>
   );
@@ -180,7 +176,7 @@ const MobileAnchor = ({ label, target, onClick }) => {
   return (
     <button
       onClick={() => onClick(target)}
-      className='py-3 text-left text-lg font-medium text-[#5B4739] hover:text-[#F98948] transition-colors'
+      className='py-3 text-center text-lg font-semibold text-[var(--color-blue)]'
     >
       {label}
     </button>

@@ -6,7 +6,7 @@ const ReviewPage = () => {
     <div>
       <h1
         id='review-title'
-        className='text-center pt-12  text-4xl! md:text-6xl! lg:text-7xl!'
+        className='text-center mt-8  text-4xl! md:text-6xl! lg:text-7xl!'
       >
         TESTIMONIALS
       </h1>

@@ -21,7 +21,7 @@ const Cart = ({ title, labels, description, image }) => {
           })}
         </ul>
 
-        <div className='text-justify text-sm sm:text-base hidden lg:block'>
+        <div className='text-justify lg:mb-8 xl:mb-0 text-sm sm:text-base hidden lg:block'>
           {description.split('\n\n').map((paragraph, index) => (
             <p key={index} className={index > 0 ? 'mt-3 sm:mt-4' : ''}>
               {paragraph}

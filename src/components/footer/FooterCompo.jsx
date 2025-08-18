@@ -1,45 +1,158 @@
 import React from 'react';
+import BBS from '../../assets/BBS.png';
+import email from '../../assets/email.png';
+import linkedin from '../../assets/linkedin.png';
+import tasker from '../../assets/tasker.png';
 
 const FooterCompo = () => {
   return (
-    <div className='bg-[var(--color-blue)] h-[80vh] overflow-hidden'>
-      <div className='pt-8 px-12'>
-        <div className='flex justify-between items-center'>
-          <div>
-            <div className='relative group cursor-pointer'>
-              <div className='absolute bottom-3 left-1/2 w-0 h-1 bg-[var(--color-orange)] transform -translate-x-1/2 group-hover:w-full transition-all duration-800 ease-out'></div>
-              <h1 className='text-[var(--color-cream)]! relative z-10'>
+    <div
+      className='overflow-hidden relative'
+      style={{
+        backgroundColor: 'var(--color-blue)',
+        minHeight: 'clamp(60vh, 50vh, 70vh)',
+        height: 'clamp(70vh, 60vh, 80vh)',
+      }}
+    >
+      <div className='pt-8 px-6 xl:px-12 2xl:px-16 h-full relative'>
+        <div className='flex justify-between items-start'>
+          <div className='flex-1 max-w-2xl 2xl:max-w-3xl'>
+            <div className='relative group cursor-pointer mb-4 inline-block'>
+              <div
+                className='absolute bottom-1 left-1/2 w-0 h-1 group-hover:w-full transition-all duration-800 ease-out'
+                style={{
+                  backgroundColor: 'var(--color-orange)',
+                  transform: 'translateX(-50%)',
+                }}
+              ></div>
+              <h1
+                className='relative z-10 font-bold leading-tight text-[41px]! md:text-[37px]! lg:text-[59px]!'
+                style={{
+                  color: 'var(--color-cream)',
+                  fontFamily: 'var(--font-chango)',
+                  letterSpacing: '-0.09em',
+                }}
+              >
                 Let's work together
               </h1>
             </div>
-            <p className='text-[var(--color-cream)]! text-[23px]! max-w-[600px]'>
+            <p
+              className='leading-relaxed'
+              style={{
+                color: 'var(--color-cream)',
+                fontFamily: 'var(--font-montserrat)',
+                fontSize: 'clamp(16px, 1.8vw, 23px)',
+                fontWeight: 400,
+                maxWidth: '600px',
+              }}
+            >
               Let's chat about your goals and how I can help your business make
               a bigger impact.
             </p>
+            <div className='flex gap-4 mt-6 md:hidden items-center'>
+              <a
+                href='https://www.linkedin.com/in/votre-profil'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <img src={linkedin} alt='linkedin' width={30} height={30} />
+              </a>
+              <a
+                href='https://www.airtasker.com/users/votre-profil'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <img src={tasker} alt='airtasker' width={24} height={24} />
+              </a>
+              <a href='mailto:votre-email@exemple.com'>
+                <img src={email} alt='email' width={30} height={30} />
+              </a>
+            </div>
           </div>
-          <div className='flex flex-col gap-4'>
-            <button className='border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer'>
+
+          <div className='flex flex-col gap-4 ml-8'>
+            <button
+              className='hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap'
+              style={{
+                border: '1px solid var(--color-cream)',
+                backgroundColor: 'transparent',
+                color: 'var(--color-cream)',
+                fontFamily: 'var(--font-montserrat)',
+                fontSize: '14px',
+                fontWeight: 600,
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'var(--color-cream)';
+                e.target.style.color = 'var(--color-blue)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent';
+                e.target.style.color = 'var(--color-cream)';
+              }}
+            >
               LinkedIn
             </button>
-            <button className=' border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer'>
+            <button
+              className=' hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap'
+              style={{
+                border: '1px solid var(--color-cream)',
+                backgroundColor: 'transparent',
+                color: 'var(--color-cream)',
+                fontFamily: 'var(--font-montserrat)',
+                fontSize: '14px',
+                fontWeight: 600,
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'var(--color-cream)';
+                e.target.style.color = 'var(--color-blue)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent';
+                e.target.style.color = 'var(--color-cream)';
+              }}
+            >
               AirTasker
             </button>
           </div>
         </div>
-        <div className='mt-40'>
-          <p className='text-[var(--color-cream)]!'>© 2025</p>
-          <p className='text-[var(--color-cream)]!'>
+
+        {/* Copyright - Position normale */}
+        <div className='flex flex-col mt-12'>
+          <p
+            style={{
+              color: 'var(--color-cream)',
+              fontFamily: 'var(--font-montserrat)',
+              fontSize: '14px',
+              fontWeight: 400,
+              marginBottom: '4px',
+            }}
+          >
+            © 2025
+          </p>
+          <p
+            style={{
+              color: 'var(--color-cream)',
+              fontFamily: 'var(--font-montserrat)',
+              fontSize: '14px',
+              fontWeight: 400,
+            }}
+          >
             Designed by Audrey and developed by Alexis Helm
           </p>
         </div>
       </div>
-      <div className='w-full relative'>
-        <h2 className='text-[var(--color-orange)]! absolute right-22 top-3 text-[64px]!'>
-          Studio
-        </h2>
-        <h1 className='text-[var(--color-cream)]! absolute top-[-28px] text-[191px]!'>
-          Bright Brand
-        </h1>
+
+      {/* Image BBS - Correction pour mobile */}
+      <div className='absolute bottom-2.5 md:bottom-92 lg:bottom-0 xl:bottom-0  left-0 right-0 pointer-events-none'>
+        <img
+          src={BBS}
+          alt='Bright Brand Studio'
+          className='w-full h-auto object-contain object-bottom'
+          style={{
+            display: 'block',
+            maxHeight: '40vh',
+          }}
+        />
       </div>
     </div>
   );

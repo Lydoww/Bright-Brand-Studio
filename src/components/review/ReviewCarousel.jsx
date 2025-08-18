@@ -50,7 +50,7 @@ const ReviewsCarousel = () => {
     const updateScreenSize = () => {
       const width = window.innerWidth;
       console.log('Current width:', width); // Debug
-      
+
       if (width >= 1024) {
         setScreenSize('desktop');
         console.log('Setting desktop mode'); // Debug
@@ -155,7 +155,7 @@ const ReviewsCarousel = () => {
       } else {
         centerIndex = Math.floor(config.cardsVisible / 2);
       }
-      
+
       const stackOffset = index - centerIndex;
       const initialX = stackOffset * 25;
       const initialY = stackOffset * 20;
@@ -169,14 +169,15 @@ const ReviewsCarousel = () => {
       } else {
         finalPosition = index - Math.floor(config.cardsVisible / 2);
       }
-      
+
       const finalX = finalPosition * config.spacing;
       const finalY = 0;
       const finalRotation = 0;
 
       const currentX = initialX + (finalX - initialX) * scrollProgress;
       const currentY = initialY + (finalY - initialY) * scrollProgress;
-      const currentRotation = initialRotation + (finalRotation - initialRotation) * scrollProgress;
+      const currentRotation =
+        initialRotation + (finalRotation - initialRotation) * scrollProgress;
 
       return {
         transform: `translate(${currentX}px, ${currentY}px) rotate(${currentRotation}deg)`,
@@ -256,15 +257,16 @@ const ReviewsCarousel = () => {
   );
 
   return (
-    <div className='bg-[var(--color-cream)] min-h-screen'>
-      {/* Debug info - à supprimer après test */}
+    <div className='bg-[var(--color-cream)] lg:min-h-screen'>
       <div className='fixed top-0 left-0 bg-black text-white p-2 text-xs z-50'>
-        Screen: {screenSize} | Width: {typeof window !== 'undefined' ? window.innerWidth : 0} | Cards: {config.cardsVisible}
+        Screen: {screenSize} | Width:{' '}
+        {typeof window !== 'undefined' ? window.innerWidth : 0} | Cards:{' '}
+        {config.cardsVisible}
       </div>
-      
+
       <div
         ref={sectionRef}
-        className='h-[80vh] flex items-center justify-center relative overflow-hidden'
+        className='h-[70vh] md:h-[50vh] lg:h-[80vh] flex items-center justify-center relative overflow-hidden'
       >
         <QuoteIcon className='absolute top-[-10px] left-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block' />
         <QuoteIcon className='absolute bottom-[-10px] right-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
@@ -273,21 +275,29 @@ const ReviewsCarousel = () => {
           {reviews.map((review, index) => (
             <div
               key={review.id}
-              className={`absolute p-6 rounded-2xl shadow-lg ${getColorClasses(review.color)} flex flex-col justify-between`}
+              className={`absolute p-6 rounded-2xl shadow-lg ${getColorClasses(
+                review.color
+              )} flex flex-col justify-between`}
               style={{
                 width: `${config.cardWidth}px`,
                 height: screenSize === 'mobile' ? '350px' : '320px',
-                ...getCardStyle(index)
+                ...getCardStyle(index),
               }}
             >
               <div>
                 <StarRating rating={review.rating} color={review.color} />
-                <p className='text-sm leading-relaxed opacity-95 flex-1' style={{ color: 'inherit' }}>
+                <p
+                  className='text-sm leading-relaxed opacity-95 flex-1'
+                  style={{ color: 'inherit' }}
+                >
                   {review.text}
                 </p>
               </div>
               <div className='mt-4 pt-4 border-t border-white/20'>
-                <div className='font-semibold text-right' style={{ color: 'inherit' }}>
+                <div
+                  className='font-semibold text-right'
+                  style={{ color: 'inherit' }}
+                >
                   — {review.name}
                 </div>
               </div>
@@ -296,7 +306,7 @@ const ReviewsCarousel = () => {
         </div>
 
         {scrollProgress === 1 && (
-          <div className='absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2'>
+          <div className='absolute bottom-8 sm:bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2'>
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}

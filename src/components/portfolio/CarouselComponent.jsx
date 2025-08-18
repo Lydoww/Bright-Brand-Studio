@@ -8,25 +8,26 @@ const CarouselComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTabletRange, setIsTabletRange] = useState(false);
   const [showHand, setShowHand] = useState(true);
   const [dragStartX, setDragStartX] = useState(0);
   const [dragEndX, setDragEndX] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const carouselRef = useRef(null);
 
-  // Détecter si on est sur mobile
   useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 1024);
+      setIsTabletRange(width >= 1024 && width <= 1150);
     };
 
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
 
-    return () => window.removeEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Observer pour détecter quand la section portfolio est visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -43,7 +44,6 @@ const CarouselComponent = () => {
     if (carouselRef.current) {
       observer.observe(carouselRef.current);
 
-      // Vérifier immédiatement si l'élément est déjà visible
       const rect = carouselRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const isCurrentlyVisible = rect.top < windowHeight && rect.bottom > 0;
@@ -60,13 +60,12 @@ const CarouselComponent = () => {
     };
   }, [isInView]);
 
-  // Timer qui se déclenche SEULEMENT quand on arrive sur la section portfolio
   useEffect(() => {
     if (isMobile && isInView) {
-      setShowHand(true); // Réafficher la main
+      setShowHand(true);
       const timer = setTimeout(() => {
         setShowHand(false);
-      }, 3000); // 3 secondes
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -84,7 +83,6 @@ const CarouselComponent = () => {
     setCurrentIndex(currentIndex - 1);
   };
 
-  // Gestion du swipe sur mobile
   const handleTouchStart = (e) => {
     if (!isMobile) return;
     setDragStartX(e.touches[0].clientX);
@@ -102,14 +100,11 @@ const CarouselComponent = () => {
     const minSwipeDistance = 50;
 
     if (Math.abs(swipeDistance) > minSwipeDistance) {
-      // Cacher la main dès qu'on swipe
       setShowHand(false);
 
       if (swipeDistance > 0) {
-        // Swipe vers la gauche - slide suivant
         nextSlide();
       } else {
-        // Swipe vers la droite - slide précédent
         prevSlide();
       }
     }
@@ -135,7 +130,6 @@ const CarouselComponent = () => {
     }),
   };
 
-  // Animation de la main avec zoom in/out
   const handVariants = {
     initial: {
       opacity: 0,
@@ -159,18 +153,40 @@ const CarouselComponent = () => {
     },
   };
 
+  // Fonction pour déterminer les classes CSS des boutons
+  const getButtonClasses = (side) => {
+    const baseClasses = 'absolute top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10';
+    
+    if (side === 'left') {
+      return isTabletRange 
+        ? `${baseClasses} left-2` 
+        : `${baseClasses} left-2 sm:left-4 lg:left-[-110px]`;
+    } else {
+      return isTabletRange 
+        ? `${baseClasses} right-2` 
+        : `${baseClasses} right-2 sm:right-4 lg:right-[-110px]`;
+    }
+  };
+
+  // Fonction pour déterminer le padding du conteneur
+  const getContainerClasses = () => {
+    if (isTabletRange) {
+      return 'relative max-w-[1043px] mx-auto px-20'; // Plus de padding sur les côtés
+    }
+    return 'relative max-w-[1043px] mx-auto px-4 sm:px-8 lg:px-0';
+  };
+
   return (
     <div
       ref={carouselRef}
-      className='relative max-w-[1043px] mx-auto px-4 sm:px-8 lg:px-0'
+      className={getContainerClasses()}
     >
-      {/* Flèches - cachées sur mobile */}
       {!isMobile && (
         <>
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className='absolute left-2 sm:left-4 lg:left-[-110px] top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10'
+            className={getButtonClasses('left')}
           >
             <svg
               className='w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10'
@@ -190,7 +206,7 @@ const CarouselComponent = () => {
           <button
             onClick={nextSlide}
             disabled={currentIndex >= data.length - 1}
-            className='absolute right-2 sm:right-4 lg:right-[-110px] top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10'
+            className={getButtonClasses('right')}
           >
             <svg
               className='w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10'
@@ -229,7 +245,6 @@ const CarouselComponent = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Image hand avec animation zoom in/out - uniquement sur mobile */}
         <AnimatePresence>
           {isMobile && showHand && (
             <motion.div
