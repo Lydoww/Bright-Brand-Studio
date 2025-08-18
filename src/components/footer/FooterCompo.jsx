@@ -10,8 +10,8 @@ const FooterCompo = () => {
       className='overflow-hidden relative'
       style={{
         backgroundColor: 'var(--color-blue)',
-        minHeight: 'clamp(60vh, 50vh, 70vh)',
-        height: 'clamp(70vh, 60vh, 80vh)',
+        minHeight: 'clamp(60vh, 50vh, 80vh)',
+        height: 'clamp(70vh, 60vh, 90vh)',
       }}
     >
       <div className='pt-8 px-6 xl:px-12 2xl:px-16 h-full relative'>
