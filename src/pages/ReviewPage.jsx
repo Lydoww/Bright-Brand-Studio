@@ -2,17 +2,7 @@ import React from 'react';
 import ReviewCarousel from '../components/review/ReviewCarousel';
 
 const ReviewPage = () => {
-  return (
-    <div>
-      <h1
-        id='review-title'
-        className='text-center mt-8  text-4xl! md:text-6xl! lg:text-7xl!'
-      >
-        TESTIMONIALS
-      </h1>
-      <ReviewCarousel />
-    </div>
-  );
+  return <ReviewCarousel />;
 };
 
 export default ReviewPage;

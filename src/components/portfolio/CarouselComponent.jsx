@@ -13,13 +13,16 @@ const CarouselComponent = () => {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragEndX, setDragEndX] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [isAutoScrollActive, setIsAutoScrollActive] = useState(false);
   const carouselRef = useRef(null);
+  const autoScrollRef = useRef(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
       setIsMobile(width < 1024);
       setIsTabletRange(width >= 1024 && width <= 1150);
+      setIsAutoScrollActive(width < 1024); // Auto-scroll actif jusqu'à 1024px
     };
 
     checkScreenSize();
@@ -60,6 +63,55 @@ const CarouselComponent = () => {
     };
   }, [isInView]);
 
+  // Auto-scroll logic
+  useEffect(() => {
+    if (isAutoScrollActive && isInView) {
+      autoScrollRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => {
+          if (prevIndex >= data.length - 1) {
+            setDirection(-1);
+            return 0; // Retour au début
+          } else {
+            setDirection(1);
+            return prevIndex + 1;
+          }
+        });
+      }, 6000); // Change de slide toutes les 6 secondes
+
+      return () => {
+        if (autoScrollRef.current) {
+          clearInterval(autoScrollRef.current);
+        }
+      };
+    }
+  }, [isAutoScrollActive, isInView, data.length]);
+
+  // Pause auto-scroll quand l'utilisateur interagit
+  const pauseAutoScroll = () => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+    }
+  };
+
+  // Reprendre l'auto-scroll après interaction
+  const resumeAutoScroll = () => {
+    if (isAutoScrollActive && isInView) {
+      setTimeout(() => {
+        autoScrollRef.current = setInterval(() => {
+          setCurrentIndex((prevIndex) => {
+            if (prevIndex >= data.length - 1) {
+              setDirection(-1);
+              return 0;
+            } else {
+              setDirection(1);
+              return prevIndex + 1;
+            }
+          });
+        }, 6000);
+      }, 3000); // Reprend après 3 secondes
+    }
+  };
+
   useEffect(() => {
     if (isMobile && isInView) {
       setShowHand(true);
@@ -73,18 +125,23 @@ const CarouselComponent = () => {
 
   const nextSlide = () => {
     if (currentIndex >= data.length - 1) return;
+    pauseAutoScroll();
     setDirection(1);
     setCurrentIndex(currentIndex + 1);
+    resumeAutoScroll();
   };
 
   const prevSlide = () => {
     if (currentIndex === 0) return;
+    pauseAutoScroll();
     setDirection(-1);
     setCurrentIndex(currentIndex - 1);
+    resumeAutoScroll();
   };
 
   const handleTouchStart = (e) => {
     if (!isMobile) return;
+    pauseAutoScroll();
     setDragStartX(e.touches[0].clientX);
   };
 
@@ -103,14 +160,21 @@ const CarouselComponent = () => {
       setShowHand(false);
 
       if (swipeDistance > 0) {
-        nextSlide();
+        if (currentIndex < data.length - 1) {
+          setDirection(1);
+          setCurrentIndex(currentIndex + 1);
+        }
       } else {
-        prevSlide();
+        if (currentIndex > 0) {
+          setDirection(-1);
+          setCurrentIndex(currentIndex - 1);
+        }
       }
     }
 
     setDragStartX(0);
     setDragEndX(0);
+    resumeAutoScroll();
   };
 
   const slideVariants = {
@@ -155,23 +219,24 @@ const CarouselComponent = () => {
 
   // Fonction pour déterminer les classes CSS des boutons
   const getButtonClasses = (side) => {
-    const baseClasses = 'absolute top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10';
-    
+    const baseClasses =
+      'absolute top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10';
+
     if (side === 'left') {
-      return isTabletRange 
-        ? `${baseClasses} left-2` 
+      return isTabletRange
+        ? `${baseClasses} left-2`
         : `${baseClasses} left-2 sm:left-4 lg:left-[-110px]`;
     } else {
-      return isTabletRange 
-        ? `${baseClasses} right-2` 
+      return isTabletRange
+        ? `${baseClasses} right-2`
         : `${baseClasses} right-2 sm:right-4 lg:right-[-110px]`;
     }
   };
 
-  // Fonction pour déterminer le padding du conteneur
+ 
   const getContainerClasses = () => {
     if (isTabletRange) {
-      return 'relative max-w-[1043px] mx-auto px-20'; // Plus de padding sur les côtés
+      return 'relative max-w-[1043px] mx-auto px-20'; 
     }
     return 'relative max-w-[1043px] mx-auto px-4 sm:px-8 lg:px-0';
   };
@@ -180,6 +245,8 @@ const CarouselComponent = () => {
     <div
       ref={carouselRef}
       className={getContainerClasses()}
+      onMouseEnter={pauseAutoScroll} 
+      onMouseLeave={resumeAutoScroll} 
     >
       {!isMobile && (
         <>
@@ -226,7 +293,7 @@ const CarouselComponent = () => {
       )}
 
       <div
-        className='overflow-hidden relative'
+        className='overflow-hidden relative h-[870px] sm:h-[620px] md:h-[800px] lg:h-auto'
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -259,6 +326,9 @@ const CarouselComponent = () => {
           )}
         </AnimatePresence>
       </div>
+
+    
+      
     </div>
   );
 };

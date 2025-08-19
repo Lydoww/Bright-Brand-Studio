@@ -36,7 +36,7 @@ const Navbar = () => {
     <header
       className={`py-4  lg:py-8 fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled && !isMenuOpen
-          ? 'backdrop-blur-sm shadow-md'
+          ? 'bg-[var(--color-cream)]/60 backdrop-blur-sm shadow-md'
           : isMenuOpen
           ? 'bg-[var(--color-cream)] shadow-md'
           : 'bg-transparent'
@@ -59,22 +59,25 @@ const Navbar = () => {
 
           {/* Desktop Links */}
           <div className='hidden lg:flex items-center space-x-6 xl:space-x-8'>
-            <ul className='flex space-x-4 xl:space-x-6'>
-              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
+            <ul className='flex gap-2'>
+              <li className=' px-4 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
                 <Anchor label='Services' target='services' />
               </li>
-              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
+              <li className='px-4 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
                 <Anchor label='About me' target='about' />
               </li>
-              <li className='px-4 xl:px-6 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
-                <Anchor label='Review' target='review' />
+              <li className='px-4 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
+                <Anchor label='Portfolio' target='portfolio' />
+              </li>
+              <li className='px-4 py-1 font-semibold text-[var(--color-blue)] hover:scale-105 transition-all duration-300 rounded-2xl border border-transparent hover:border-[var(--color-blue)] hover:shadow-[0_0_20px_rgba(43,89,195,0.3)]'>
+                <Anchor label='Contact' target='footer' />
               </li>
             </ul>
 
             {/* Icons */}
             <div className='flex space-x-3 xl:space-x-4'>
               <a
-                href='https://linkedin.com/in/audrey'
+                href='https://www.linkedin.com/in/audrey-meaulard/'
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='LinkedIn profile of Audrey'
@@ -83,8 +86,8 @@ const Navbar = () => {
                 <img
                   src={linkedin}
                   alt='LinkedIn'
-                  width={24}
-                  height={24}
+                  width={30}
+                  height={30}
                   className='hover:scale-105 transition-transform'
                 />
               </a>
@@ -96,8 +99,8 @@ const Navbar = () => {
                 <img
                   src={email}
                   alt='Email'
-                  width={24}
-                  height={24}
+                  width={30}
+                  height={30}
                   className='hover:scale-105 transition-transform'
                 />
               </a>
@@ -133,8 +136,8 @@ const Navbar = () => {
               onClick={handleClick}
             />
             <MobileAnchor
-              label='Review'
-              target='review'
+              label='Contact'
+              target='footer'
               onClick={handleClick}
             />
 
@@ -166,7 +169,7 @@ const Navbar = () => {
 
 const Anchor = ({ label, target }) => {
   return (
-    <a href={`#${target}`} className='text-sm font-medium  transition-colors'>
+    <a href={`#${target}`} className='text-lg font-medium  transition-colors'>
       {label}
     </a>
   );

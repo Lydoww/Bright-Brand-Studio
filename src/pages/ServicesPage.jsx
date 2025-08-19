@@ -21,7 +21,7 @@ const ServicesPage = () => {
         </h3>
         <button
           type='button'
-          className='mt-6 sm:mt-8 border rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold border-[var(--color-orange)] hover:bg-[var(--color-orange)] text-[var(--color-orange)] hover:scale-105 hover:text-white transition-all'
+          className='mt-6 sm:mt-8 border rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold border-[var(--color-orange)] hover:bg-[var(--color-orange)] text-[var(--color-orange)] hover:scale-105 hover:text-[var(--color-cream)] transition-all cursor-pointer'
         >
           Let's Build your Ethical Brand
         </button>
@@ -29,8 +29,14 @@ const ServicesPage = () => {
       <Carousel />
       <h3 className='text-[41px]! lg:text-[37px]! text-[var(--color-brown)] mb-12 sm:mb-16 lg:mb-20 max-w-4xl sm:max-w-5xl lg:max-w-6xl mt-8 leading-12 font-semibold! px-4 sm:px-6'>
         And all of this, rooted in{' '}
-        <span className='italic'>ethical and engaged values</span>, to build
-        genuine trust with conscious consumers
+        <span className='italic text-[var(--color-orange)] sm:text-[var(--color-brown)]'>
+          ethical
+        </span>{' '}
+        and{' '}
+        <span className='italic text-[var(--color-orange)] sm:text-[var(--color-brown)]'>
+          engaged values
+        </span>
+        , to build genuine trust with conscious consumers
       </h3>
     </main>
   );

@@ -16,7 +16,7 @@ function Marque() {
         color: '#F98948',
         fontFamily: 'Montserrat',
       }}
-      className='h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] text-responsive'
+      className='h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] text-responsive blur-edges'
     >
       <div
         style={{

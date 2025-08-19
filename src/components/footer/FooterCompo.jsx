@@ -10,8 +10,8 @@ const FooterCompo = () => {
       className='overflow-hidden relative'
       style={{
         backgroundColor: 'var(--color-blue)',
-        minHeight: 'clamp(60vh, 50vh, 80vh)',
-        height: 'clamp(70vh, 60vh, 90vh)',
+        minHeight: 'clamp(60vh, 80vh, 90vh)'
+       
       }}
     >
       <div className='pt-8 px-6 xl:px-12 2xl:px-16 h-full relative'>
@@ -51,14 +51,14 @@ const FooterCompo = () => {
             </p>
             <div className='flex gap-4 mt-6 md:hidden items-center'>
               <a
-                href='https://www.linkedin.com/in/votre-profil'
+                href='https://www.linkedin.com/in/audrey-meaulard/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 <img src={linkedin} alt='linkedin' width={30} height={30} />
               </a>
               <a
-                href='https://www.airtasker.com/users/votre-profil'
+                href='https://www.airtasker.com/users/b0e9cf5d5fef-p-32632875/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
@@ -71,8 +71,11 @@ const FooterCompo = () => {
           </div>
 
           <div className='flex flex-col gap-4 ml-8'>
-            <button
-              className='hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap'
+            <a
+              href='https://www.linkedin.com/in/audrey-meaulard/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap no-underline '
               style={{
                 border: '1px solid var(--color-cream)',
                 backgroundColor: 'transparent',
@@ -91,9 +94,12 @@ const FooterCompo = () => {
               }}
             >
               LinkedIn
-            </button>
-            <button
-              className=' hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap'
+            </a>
+            <a
+              href='https://www.airtasker.com/users/b0e9cf5d5fef-p-32632875/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hidden md:block px-6 py-3 rounded-2xl transition-all duration-300 cursor-pointer whitespace-nowrap no-underline '
               style={{
                 border: '1px solid var(--color-cream)',
                 backgroundColor: 'transparent',
@@ -112,7 +118,7 @@ const FooterCompo = () => {
               }}
             >
               AirTasker
-            </button>
+            </a>
           </div>
         </div>
 
@@ -143,7 +149,7 @@ const FooterCompo = () => {
       </div>
 
       {/* Image BBS - Correction pour mobile */}
-      <div className='absolute bottom-2.5 md:bottom-92 lg:bottom-0 xl:bottom-0  left-0 right-0 pointer-events-none'>
+      <div className='absolute bottom-65 md:bottom-92 lg:bottom-0 xl:bottom-0  left-0 right-0 pointer-events-none'>
         <img
           src={BBS}
           alt='Bright Brand Studio'

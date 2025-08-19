@@ -100,7 +100,7 @@ const AboutPage = () => {
         </div>
 
         {/* Mobile Layout - NOUVELLE VERSION */}
-        <div className='md:hidden px-6 relative h-[85vh] flex flex-col'>
+        <div className='md:hidden px-6 relative h-[60vh] flex flex-col'>
           <div className='flex flex-col justify-center max-w-[350px] pt-6'>
             <p className='text-[var(--color-cream)]! text-lg mb-2'>Hi,</p>
 
@@ -123,13 +123,13 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <button
-              type='button'
-              className='mt-8 max-w-[180px] border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer'
+            <a
+              href='mailto:audrey@example.com'
+              className='mt-8 max-w-[180px] border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer inline-block text-center'
               aria-label='Contact Audrey to work together'
             >
               Let's work together
-            </button>
+            </a>
           </div>
 
           <div className='absolute right-5 bottom-[29px] transform translate-y-[35px]'>

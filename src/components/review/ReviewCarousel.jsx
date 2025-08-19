@@ -4,7 +4,7 @@ import quoteImage from '../../assets/portfolioImage/quote.png';
 const ReviewsCarousel = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [screenSize, setScreenSize] = useState('mobile'); // Changé de 'desktop' à 'mobile'
+  const [screenSize, setScreenSize] = useState('mobile'); 
   const sectionRef = useRef(null);
 
   const reviews = [
@@ -45,21 +45,16 @@ const ReviewsCarousel = () => {
     },
   ];
 
-  // Détecter la taille d'écran
   useEffect(() => {
     const updateScreenSize = () => {
       const width = window.innerWidth;
-      console.log('Current width:', width); // Debug
 
       if (width >= 1024) {
         setScreenSize('desktop');
-        console.log('Setting desktop mode'); // Debug
       } else if (width >= 600) {
         setScreenSize('tablet');
-        console.log('Setting tablet mode'); // Debug
       } else {
         setScreenSize('mobile');
-        console.log('Setting mobile mode'); // Debug
       }
     };
 
@@ -68,7 +63,6 @@ const ReviewsCarousel = () => {
     return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
 
-  // Configuration selon la taille d'écran
   const getConfig = () => {
     switch (screenSize) {
       case 'mobile':
@@ -83,10 +77,6 @@ const ReviewsCarousel = () => {
 
   const config = getConfig();
   const maxIndex = Math.max(0, reviews.length - config.cardsVisible);
-
-  // Debug
-  console.log('Current screenSize:', screenSize);
-  console.log('Current config:', config);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,18 +115,16 @@ const ReviewsCarousel = () => {
     }
   }, [scrollProgress, maxIndex]);
 
-  // Définir l'index de départ selon la taille d'écran
   useEffect(() => {
     if (screenSize === 'mobile') {
-      setCurrentIndex(2); // Commence à la 3ème review (Mina H.)
+      setCurrentIndex(2);
     } else if (screenSize === 'tablet') {
-      setCurrentIndex(1); // Commence par les 2ème et 3ème reviews (Mary D. + Mina H.)
+      setCurrentIndex(1);
     } else {
-      setCurrentIndex(1); // Desktop: 3ème review au centre (2ème, 3ème, 4ème affichées)
+      setCurrentIndex(1);
     }
   }, [screenSize]);
 
-  // Reset currentIndex si il dépasse le nouveau max après un resize
   useEffect(() => {
     if (currentIndex > maxIndex) {
       setCurrentIndex(0);
@@ -147,11 +135,9 @@ const ReviewsCarousel = () => {
     const totalCards = reviews.length;
 
     if (scrollProgress < 1) {
-      // Animation initiale - empilage au centre
-      // Ajuster le centerIndex pour que la 3ème carte soit au centre sur desktop
       let centerIndex;
       if (screenSize === 'desktop') {
-        centerIndex = 2; // Force la 3ème carte (index 2) au centre
+        centerIndex = 2;
       } else {
         centerIndex = Math.floor(config.cardsVisible / 2);
       }
@@ -161,11 +147,9 @@ const ReviewsCarousel = () => {
       const initialY = stackOffset * 20;
       const initialRotation = stackOffset * 12;
 
-      // Position finale selon la config - ajustée pour centrer
       let finalPosition;
       if (screenSize === 'desktop') {
-        // Pour desktop, centrer les 3 cartes autour de 0
-        finalPosition = index - 2; // Index 2 au centre (0), index 1 à gauche (-1), index 3 à droite (+1)
+        finalPosition = index - 2;
       } else {
         finalPosition = index - Math.floor(config.cardsVisible / 2);
       }
@@ -186,7 +170,6 @@ const ReviewsCarousel = () => {
         transition: 'none',
       };
     } else {
-      // Carousel actif
       const visibleIndex = index - currentIndex;
       const isVisible = visibleIndex >= 0 && visibleIndex < config.cardsVisible;
 
@@ -199,14 +182,13 @@ const ReviewsCarousel = () => {
         };
       }
 
-      // Position selon la configuration
       let xOffset;
       if (config.cardsVisible === 1) {
-        xOffset = 0; // Centré
+        xOffset = 0;
       } else if (config.cardsVisible === 2) {
-        xOffset = (visibleIndex - 0.5) * config.spacing; // Centré entre les deux
+        xOffset = (visibleIndex - 0.5) * config.spacing;
       } else {
-        xOffset = (visibleIndex - 1) * config.spacing; // 3 cartes, celle du milieu centrée
+        xOffset = (visibleIndex - 1) * config.spacing;
       }
 
       return {
@@ -257,21 +239,21 @@ const ReviewsCarousel = () => {
   );
 
   return (
-    <div className='bg-[var(--color-cream)] lg:min-h-screen'>
-      <div className='fixed top-0 left-0 bg-black text-white p-2 text-xs z-50'>
-        Screen: {screenSize} | Width:{' '}
-        {typeof window !== 'undefined' ? window.innerWidth : 0} | Cards:{' '}
-        {config.cardsVisible}
-      </div>
-
+    <div className='bg-[var(--color-cream)] min-h-[70vh] md:min-h-[60vh] lg:min-h-[100vh]'>
+      <h1
+        id='review-title'
+        className='text-center pt-8 mb-8 md:mb-12 text-4xl! md:text-6xl! lg:text-7xl! font-gulfs text-[var(--color-brown)]'
+      >
+        TESTIMONIALS
+      </h1>
       <div
         ref={sectionRef}
-        className='h-[70vh] md:h-[50vh] lg:h-[80vh] flex items-center justify-center relative overflow-hidden'
+        className='h-[50vh] md:h-[50vh] lg:h-[90vh] flex items-center justify-center relative overflow-hidden'
       >
         <QuoteIcon className='absolute top-[-10px] left-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block' />
         <QuoteIcon className='absolute bottom-[-10px] right-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
 
-        <div className='relative w-full h-full flex items-center justify-center'>
+        <div className='relative w-full h-full lg:items-center flex  justify-center'>
           {reviews.map((review, index) => (
             <div
               key={review.id}
