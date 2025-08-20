@@ -98,7 +98,7 @@ const AboutPage = () => {
         </div>
 
         <div className='sm:hidden px-6 relative flex flex-col pb-24 min-h-[60vh]'>
-          <div className='flex flex-col justify-center max-w-auto pt-6 z-10 '>
+          <div className='flex flex-col justify-center max-w-auto pt-6 z-10'>
             <p className='text-[var(--color-cream)]! text-lg mb-2'>Hi,</p>
 
             <h1 className='text-[41px]! font-bold text-[var(--color-cream)]! mb-4 leading-tight'>
@@ -122,14 +122,14 @@ const AboutPage = () => {
 
             <a
               href='mailto:audrey@example.com'
-              className='mt-8 max-w-[180px] border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer inline-block text-center'
+              className='mt-8 max-w-[180px] border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer inline-block text-center [@media(max-width:375px)]:mx-auto'
               aria-label='Contact Audrey to work together'
             >
               Let's work together
             </a>
           </div>
 
-          <div className='absolute right-5 bottom-[-6px] z-0 pointer-events-none'>
+          <div className='absolute right-5 bottom-[-6px] z-0 pointer-events-none [@media(max-width:375px)]:hidden'>
             <LazyLoadImage
               src={Audrey}
               alt='Audrey - Sustainable Brand Strategist'
