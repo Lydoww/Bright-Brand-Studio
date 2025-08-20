@@ -252,8 +252,8 @@ const ReviewsCarousel = () => {
           ref={sectionRef}
           className='flex-1 flex items-center justify-center relative overflow-hidden px-4 md:px-8'
         >
-          <QuoteIcon className='absolute top-[-25px] left-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block' />
-          <QuoteIcon className='absolute bottom-[-25px] right-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
+          <QuoteIcon className='absolute top-[-25px] left-30 w-30 h-30 text-[var(--color-orange)] hidden xl:block' />
+          <QuoteIcon className='absolute bottom-[-25px] right-30 w-30 h-30 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
 
           <div className='relative w-full h-full flex items-center justify-center'>
             {reviews.map((review, index) => (

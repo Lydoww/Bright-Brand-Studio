@@ -35,7 +35,7 @@ const Cart = ({ title, labels, description, image }) => {
           className='w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[550px] xl:max-h-[600px] object-contain rounded-[15px]'
           src={image}
           alt='image'
-          loading='lazy'
+          loading='eager'
           decoding='async'
         />
 
