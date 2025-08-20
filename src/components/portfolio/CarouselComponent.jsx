@@ -13,16 +13,13 @@ const CarouselComponent = () => {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragEndX, setDragEndX] = useState(0);
   const [isInView, setIsInView] = useState(false);
-  const [isAutoScrollActive, setIsAutoScrollActive] = useState(false);
   const carouselRef = useRef(null);
-  const autoScrollRef = useRef(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
       setIsMobile(width < 1024);
       setIsTabletRange(width >= 1024 && width <= 1150);
-      setIsAutoScrollActive(width < 1024); // Auto-scroll actif jusqu'à 1024px
     };
 
     checkScreenSize();
@@ -63,55 +60,6 @@ const CarouselComponent = () => {
     };
   }, [isInView]);
 
-  // Auto-scroll logic
-  useEffect(() => {
-    if (isAutoScrollActive && isInView) {
-      autoScrollRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          if (prevIndex >= data.length - 1) {
-            setDirection(-1);
-            return 0; // Retour au début
-          } else {
-            setDirection(1);
-            return prevIndex + 1;
-          }
-        });
-      }, 6000); // Change de slide toutes les 6 secondes
-
-      return () => {
-        if (autoScrollRef.current) {
-          clearInterval(autoScrollRef.current);
-        }
-      };
-    }
-  }, [isAutoScrollActive, isInView, data.length]);
-
-  // Pause auto-scroll quand l'utilisateur interagit
-  const pauseAutoScroll = () => {
-    if (autoScrollRef.current) {
-      clearInterval(autoScrollRef.current);
-    }
-  };
-
-  // Reprendre l'auto-scroll après interaction
-  const resumeAutoScroll = () => {
-    if (isAutoScrollActive && isInView) {
-      setTimeout(() => {
-        autoScrollRef.current = setInterval(() => {
-          setCurrentIndex((prevIndex) => {
-            if (prevIndex >= data.length - 1) {
-              setDirection(-1);
-              return 0;
-            } else {
-              setDirection(1);
-              return prevIndex + 1;
-            }
-          });
-        }, 6000);
-      }, 3000); // Reprend après 3 secondes
-    }
-  };
-
   useEffect(() => {
     if (isMobile && isInView) {
       setShowHand(true);
@@ -124,24 +72,17 @@ const CarouselComponent = () => {
   }, [isMobile, isInView]);
 
   const nextSlide = () => {
-    if (currentIndex >= data.length - 1) return;
-    pauseAutoScroll();
     setDirection(1);
-    setCurrentIndex(currentIndex + 1);
-    resumeAutoScroll();
+    setCurrentIndex(currentIndex >= data.length - 1 ? 0 : currentIndex + 1);
   };
 
   const prevSlide = () => {
-    if (currentIndex === 0) return;
-    pauseAutoScroll();
     setDirection(-1);
-    setCurrentIndex(currentIndex - 1);
-    resumeAutoScroll();
+    setCurrentIndex(currentIndex === 0 ? data.length - 1 : currentIndex - 1);
   };
 
   const handleTouchStart = (e) => {
     if (!isMobile) return;
-    pauseAutoScroll();
     setDragStartX(e.touches[0].clientX);
   };
 
@@ -160,21 +101,20 @@ const CarouselComponent = () => {
       setShowHand(false);
 
       if (swipeDistance > 0) {
-        if (currentIndex < data.length - 1) {
-          setDirection(1);
-          setCurrentIndex(currentIndex + 1);
-        }
+        // Swipe vers la gauche = next
+        setDirection(1);
+        setCurrentIndex(currentIndex >= data.length - 1 ? 0 : currentIndex + 1);
       } else {
-        if (currentIndex > 0) {
-          setDirection(-1);
-          setCurrentIndex(currentIndex - 1);
-        }
+        // Swipe vers la droite = prev
+        setDirection(-1);
+        setCurrentIndex(
+          currentIndex === 0 ? data.length - 1 : currentIndex - 1
+        );
       }
     }
 
     setDragStartX(0);
     setDragEndX(0);
-    resumeAutoScroll();
   };
 
   const slideVariants = {
@@ -217,7 +157,6 @@ const CarouselComponent = () => {
     },
   };
 
-  // Fonction pour déterminer les classes CSS des boutons
   const getButtonClasses = (side) => {
     const baseClasses =
       'absolute top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center hover:scale-110 duration-300 ease-in-out transition-transform cursor-pointer bg-white/80 backdrop-blur-sm shadow-lg z-10';
@@ -233,28 +172,18 @@ const CarouselComponent = () => {
     }
   };
 
- 
   const getContainerClasses = () => {
     if (isTabletRange) {
-      return 'relative max-w-[1043px] mx-auto px-20'; 
+      return 'relative max-w-[1043px] mx-auto px-20';
     }
     return 'relative max-w-[1043px] mx-auto px-4 sm:px-8 lg:px-0';
   };
 
   return (
-    <div
-      ref={carouselRef}
-      className={getContainerClasses()}
-      onMouseEnter={pauseAutoScroll} 
-      onMouseLeave={resumeAutoScroll} 
-    >
+    <div ref={carouselRef} className={getContainerClasses()}>
       {!isMobile && (
         <>
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className={getButtonClasses('left')}
-          >
+          <button onClick={prevSlide} className={getButtonClasses('left')}>
             <svg
               className='w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10'
               fill='none'
@@ -270,11 +199,7 @@ const CarouselComponent = () => {
             </svg>
           </button>
 
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= data.length - 1}
-            className={getButtonClasses('right')}
-          >
+          <button onClick={nextSlide} className={getButtonClasses('right')}>
             <svg
               className='w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10'
               fill='none'
@@ -326,9 +251,6 @@ const CarouselComponent = () => {
           )}
         </AnimatePresence>
       </div>
-
-    
-      
     </div>
   );
 };

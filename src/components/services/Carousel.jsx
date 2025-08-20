@@ -103,7 +103,6 @@ const Carousel = () => {
 
   return (
     <div className='m-4 mt-12'>
-      {/* Mobile: 1 colonne */}
       <div className='flex md:hidden flex-col gap-6 items-center'>
         {services.map((service, idx) => (
           <Cart
@@ -118,7 +117,6 @@ const Carousel = () => {
         ))}
       </div>
 
-      {/* Tablet: 2 colonnes */}
       <div className='hidden md:flex lg:hidden gap-6 justify-center'>
         {splitIntoColumns(services, 2).map((column, colIdx) => (
           <div key={colIdx} className='flex flex-col gap-6 items-center flex-1'>
@@ -141,8 +139,7 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-
-      {/* Desktop: 3 colonnes */}
+        
       <div className='hidden lg:flex gap-6 justify-center'>
         {splitIntoColumns(services, 3).map((column, colIdx) => (
           <div key={colIdx} className='flex flex-col gap-6 items-center flex-1'>

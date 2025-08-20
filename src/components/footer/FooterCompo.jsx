@@ -10,8 +10,7 @@ const FooterCompo = () => {
       className='overflow-hidden relative'
       style={{
         backgroundColor: 'var(--color-blue)',
-        minHeight: 'clamp(60vh, 80vh, 90vh)'
-       
+        minHeight: 'clamp(60vh, 80vh, 90vh)',
       }}
     >
       <div className='pt-8 px-6 xl:px-12 2xl:px-16 h-full relative'>
@@ -122,7 +121,6 @@ const FooterCompo = () => {
           </div>
         </div>
 
-        {/* Copyright - Position normale */}
         <div className='flex flex-col mt-12'>
           <p
             style={{
@@ -148,7 +146,6 @@ const FooterCompo = () => {
         </div>
       </div>
 
-      {/* Image BBS - Correction pour mobile */}
       <div className='absolute bottom-65 md:bottom-92 lg:bottom-0 xl:bottom-0  left-0 right-0 pointer-events-none'>
         <img
           src={BBS}

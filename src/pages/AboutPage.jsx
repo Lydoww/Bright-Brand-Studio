@@ -6,7 +6,6 @@ const AboutPage = () => {
   return (
     <div className='bg-[var(--color-blue)]'>
       <div className='max-w-[1200px] mx-auto'>
-        {/* Desktop Layout - ORIGINAL INTACT */}
         <div className='hidden lg:grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-8 lg:gap-12 items-center'>
           <div className='lg:pl-12 xl:pl-20 pr-0 lg:pr-4'>
             <p className='text-[var(--color-cream)]! text-lg sm:text-xl'>
@@ -47,16 +46,15 @@ const AboutPage = () => {
               src={Audrey}
               alt='Audrey - Sustainable Brand Strategist'
               effect='opacity'
-              width={500}
-              height={500}
+              width={450}
+              height={450}
               className='rounded-lg object-cover w-full max-w-[400px] sm:max-w-[500px] h-auto'
               placeholderSrc={Audrey}
             />
           </div>
         </div>
 
-        {/* Tablet Layout - NOUVELLE VERSION */}
-        <div className='hidden md:block lg:hidden relative px-8 py-12'>
+        <div className='hidden sm:block lg:hidden relative px-8 py-12'>
           <div className='max-w-[600px] [@media(max-width:870px)]:max-w-[400px] space-y-3'>
             <p className='text-[var(--color-cream)]! text-lg'>Hi,</p>
 
@@ -99,8 +97,7 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* Mobile Layout - NOUVELLE VERSION */}
-        <div className='md:hidden px-6 relative h-[60vh] flex flex-col'>
+        <div className='sm:hidden px-6 relative h-[60vh] flex flex-col'>
           <div className='flex flex-col justify-center max-w-[350px] pt-6'>
             <p className='text-[var(--color-cream)]! text-lg mb-2'>Hi,</p>
 
@@ -137,7 +134,7 @@ const AboutPage = () => {
               src={Audrey}
               alt='Audrey - Sustainable Brand Strategist'
               effect='opacity'
-              className='w-[200px] h-[250px] rounded-lg object-cover'
+              className='w-[250px] h-[280px] rounded-lg object-cover block'
               placeholderSrc={Audrey}
             />
           </div>

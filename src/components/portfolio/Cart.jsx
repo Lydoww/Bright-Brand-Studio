@@ -35,6 +35,8 @@ const Cart = ({ title, labels, description, image }) => {
           className='w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[500px] 2xl:h-[550px] object-cover lg:object-contain rounded-[15px]'
           src={image}
           alt='image'
+          loading='lazy'
+          decoding='async'
         />
 
         <div className='text-justify text-sm sm:text-base mt-4 lg:hidden'>
