@@ -1,4 +1,4 @@
-import mainBg from '../../assets/bg.png';
+import mainBg from '../../assets/bg.jpg';
 
 const Background = ({ children }) => {
   return (

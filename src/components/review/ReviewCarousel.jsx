@@ -4,7 +4,7 @@ import quoteImage from '../../assets/portfolioImage/quote.png';
 const ReviewsCarousel = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [screenSize, setScreenSize] = useState('mobile'); 
+  const [screenSize, setScreenSize] = useState('mobile');
   const sectionRef = useRef(null);
 
   const reviews = [
@@ -239,64 +239,67 @@ const ReviewsCarousel = () => {
   );
 
   return (
-    <div className='bg-[var(--color-cream)] min-h-[70vh] md:min-h-[60vh] lg:min-h-[100vh]'>
+    <div className='bg-[var(--color-cream)] min-h-screen'>
       <h1
         id='review-title'
         className='text-center pt-8 mb-8 md:mb-12 text-4xl! md:text-6xl! lg:text-7xl! font-gulfs text-[var(--color-brown)]'
       >
         TESTIMONIALS
       </h1>
-      <div
-        ref={sectionRef}
-        className='h-[50vh] md:h-[50vh] lg:h-[90vh] flex items-center justify-center relative overflow-hidden'
-      >
-        <QuoteIcon className='absolute top-[-10px] left-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block' />
-        <QuoteIcon className='absolute bottom-[-10px] right-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
 
-        <div className='relative w-full h-full lg:items-center flex  justify-center'>
-          {reviews.map((review, index) => (
-            <div
-              key={review.id}
-              className={`absolute p-6 rounded-2xl shadow-lg ${getColorClasses(
-                review.color
-              )} flex flex-col justify-between`}
-              style={{
-                width: `${config.cardWidth}px`,
-                height: screenSize === 'mobile' ? '350px' : '320px',
-                ...getCardStyle(index),
-              }}
-            >
-              <div>
-                <StarRating rating={review.rating} color={review.color} />
-                <p
-                  className='text-sm leading-relaxed opacity-95 flex-1'
-                  style={{ color: 'inherit' }}
-                >
-                  {review.text}
-                </p>
-              </div>
-              <div className='mt-4 pt-4 border-t border-white/20'>
-                <div
-                  className='font-semibold text-right'
-                  style={{ color: 'inherit' }}
-                >
-                  — {review.name}
+      <div className='relative min-h-[75vh] md:min-h-[70vh] lg:min-h-[80vh] flex flex-col'>
+        <div
+          ref={sectionRef}
+          className='flex-1 flex items-center justify-center relative overflow-hidden px-4 md:px-8'
+        >
+          <QuoteIcon className='absolute top-[-25px] left-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block' />
+          <QuoteIcon className='absolute bottom-[-25px] right-30 w-38 h-38 text-[var(--color-orange)] hidden xl:block transform rotate-180' />
+
+          <div className='relative w-full h-full flex items-center justify-center'>
+            {reviews.map((review, index) => (
+              <div
+                key={review.id}
+                className={`absolute p-6 rounded-2xl shadow-lg ${getColorClasses(
+                  review.color
+                )} flex flex-col justify-between`}
+                style={{
+                  width: `${config.cardWidth}px`,
+                  height: screenSize === 'mobile' ? '380px' : '320px',
+                  ...getCardStyle(index),
+                }}
+              >
+                <div>
+                  <StarRating rating={review.rating} color={review.color} />
+                  <p
+                    className='text-sm leading-relaxed opacity-95 flex-1'
+                    style={{ color: 'inherit' }}
+                  >
+                    {review.text}
+                  </p>
+                </div>
+                <div className='mt-4 pt-4 border-t border-white/20'>
+                  <div
+                    className='font-semibold text-right'
+                    style={{ color: 'inherit' }}
+                  >
+                    — {review.name}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {scrollProgress === 1 && (
-          <div className='absolute bottom-8 sm:bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2'>
+        {scrollProgress === 1 && maxIndex > 0 && (
+          <div className='flex justify-center items-center pb-8 sm:pb-10 md:pb-8 lg:pb-16 space-x-2'>
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-[var(--color-orange)]'
-                    : 'bg-[var(--color-brown)]/40'
+                    ? 'bg-[var(--color-orange)] scale-110'
+                    : 'bg-[var(--color-brown)]/40 hover:bg-[var(--color-brown)]/60'
                 }`}
               />
             ))}

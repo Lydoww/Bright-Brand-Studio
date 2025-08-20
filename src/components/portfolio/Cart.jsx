@@ -32,7 +32,7 @@ const Cart = ({ title, labels, description, image }) => {
 
       <div className='w-full lg:w-2/3 p-4 lg:p-6 lg:flex lg:items-center'>
         <img
-          className='w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[500px] 2xl:h-[550px] object-cover lg:object-contain rounded-[15px]'
+          className='w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[550px] xl:max-h-[600px] object-contain rounded-[15px]'
           src={image}
           alt='image'
           loading='lazy'

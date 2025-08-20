@@ -218,7 +218,7 @@ const CarouselComponent = () => {
       )}
 
       <div
-        className='overflow-hidden relative h-[870px] sm:h-[620px] md:h-[800px] lg:h-auto'
+        className='overflow-hidden relative min-h-[600px] sm:min-h-[500px] md:min-h-[600px] lg:h-auto'
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}

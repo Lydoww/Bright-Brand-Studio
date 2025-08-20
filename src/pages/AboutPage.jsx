@@ -121,7 +121,7 @@ const AboutPage = () => {
             </div>
 
             <a
-              href='mailto:audrey@example.com'
+              href='mailto:audrey@brightbrandstudio.com.au'
               className='mt-8 max-w-[180px] border border-[var(--color-cream)] text-[var(--color-cream)] px-4 py-2 rounded-2xl hover:bg-[var(--color-cream)] hover:text-[var(--color-blue)] transition-colors cursor-pointer inline-block text-center [@media(max-width:375px)]:mx-auto'
               aria-label='Contact Audrey to work together'
             >

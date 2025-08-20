@@ -18,7 +18,7 @@ const FooterCompo = () => {
           <div className='flex-1 max-w-2xl 2xl:max-w-3xl'>
             <div className='relative group cursor-pointer mb-4 inline-block'>
               <div
-                className='absolute bottom-1 left-1/2 w-0 h-1 group-hover:w-full transition-all duration-800 ease-out'
+                className='absolute bottom-1 left-1/2 w-0 h-1 hidden md:block md:group-hover:w-full transition-all duration-800 ease-out'
                 style={{
                   backgroundColor: 'var(--color-orange)',
                   transform: 'translateX(-50%)',
@@ -63,7 +63,7 @@ const FooterCompo = () => {
               >
                 <img src={tasker} alt='airtasker' width={24} height={24} />
               </a>
-              <a href='mailto:votre-email@exemple.com'>
+              <a href='mailto:audrey@brightbrandstudio.com.au'>
                 <img src={email} alt='email' width={30} height={30} />
               </a>
             </div>
@@ -146,7 +146,7 @@ const FooterCompo = () => {
         </div>
       </div>
 
-      <div className='absolute bottom-65 md:bottom-92 lg:bottom-0 xl:bottom-0  left-0 right-0 pointer-events-none'>
+      <div className='absolute bottom-0 left-0 right-0 pointer-events-none'>
         <img
           src={BBS}
           alt='Bright Brand Studio'

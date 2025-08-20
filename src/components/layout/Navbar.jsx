@@ -92,7 +92,7 @@ const Navbar = () => {
                 />
               </a>
               <a
-                href='mailto:audrey@example.com'
+                href='mailto:audrey@brightbrandstudio.com.au'
                 aria-label='Send email to Audrey'
                 className='p-1'
               >
@@ -153,7 +153,7 @@ const Navbar = () => {
                 <img src={linkedin} alt='LinkedIn' width={28} height={28} />
               </a>
               <a
-                href='mailto:audrey@example.com'
+                href='mailto:audrey@brightbrandstudio.com.au'
                 aria-label='Send email to Audrey'
                 className='p-2'
               >
