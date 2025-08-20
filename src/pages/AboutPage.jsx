@@ -97,8 +97,8 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <div className='sm:hidden px-6 relative h-[60vh] flex flex-col'>
-          <div className='flex flex-col justify-center max-w-[350px] pt-6'>
+        <div className='sm:hidden px-6 relative flex flex-col pb-24 min-h-[60vh]'>
+          <div className='flex flex-col justify-center max-w-auto pt-6 z-10 '>
             <p className='text-[var(--color-cream)]! text-lg mb-2'>Hi,</p>
 
             <h1 className='text-[41px]! font-bold text-[var(--color-cream)]! mb-4 leading-tight'>
@@ -114,7 +114,7 @@ const AboutPage = () => {
                 clarity.
               </p>
 
-              <p className='text-[var(--color-cream)]! text-justify'>
+              <p className='text-[var(--color-cream)]! text-justify mb-2'>
                 I created a strategy framework to help you root your vision,
                 align your voice, and grow without compromising your values.
               </p>
@@ -129,12 +129,12 @@ const AboutPage = () => {
             </a>
           </div>
 
-          <div className='absolute right-5 bottom-[29px] transform translate-y-[35px]'>
+          <div className='absolute right-5 bottom-[-6px] z-0 pointer-events-none'>
             <LazyLoadImage
               src={Audrey}
               alt='Audrey - Sustainable Brand Strategist'
               effect='opacity'
-              className='w-[250px] h-[280px] rounded-lg object-cover block'
+              className='w-[210px] h-[230px] rounded-lg object-cover block'
               placeholderSrc={Audrey}
             />
           </div>
