@@ -38,7 +38,7 @@ const ReviewsCarousel = () => {
     },
     {
       id: 5,
-      name: 'Alexis H.',
+      name: 'Jackson M.',
       text: 'Perfectly on time, and very professional. I will definitely be using her again!',
       rating: 5,
       color: 'orange',
@@ -242,7 +242,7 @@ const ReviewsCarousel = () => {
     <div className='bg-[var(--color-cream)] min-h-screen'>
       <h1
         id='review-title'
-        className='text-center pt-8 mb-8 md:mb-12 text-4xl! md:text-6xl! lg:text-7xl! font-gulfs text-[var(--color-brown)]'
+        className='text-center pt-8 mb-8 md:mb-12 text-4xl! md:text-6xl! lg:text-7xl! font-gulfs text-[var(--color-brown)]!'
       >
         TESTIMONIALS
       </h1>

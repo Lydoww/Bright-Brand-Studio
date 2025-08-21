@@ -52,13 +52,13 @@ h3 {
 h2 {
   font-size: 37px;
   font-family: var(--font-chango);
-  letter-spacing: -0.09em;
+  letter-spacing: -0.08em;
 }
 
 h1 {
   font-size: 59px;
   font-family: var(--font-chango);
-  letter-spacing: -0.09em;
+  letter-spacing: -0.08em;
   color: var(--color-blue);
 }
 

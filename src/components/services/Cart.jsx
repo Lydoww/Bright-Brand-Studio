@@ -12,7 +12,7 @@ const Cart = ({
     <div
       className={`flex flex-col text-left border border-black rounded-lg shadow-md p-4 sm:p-6 pb-12 sm:pb-16 w-full max-w-sm sm:w-80 transition-all duration-700 ease-in-out ${
         isExpanded
-          ? 'bg-[var(--color-blue)] relative z-20 shadow-2xl min-h-[400px] sm:min-h-[480px]'
+          ? 'bg-[var(--color-blue)] border-hidden relative z-20 shadow-2xl min-h-[400px] sm:min-h-[480px]'
           : 'relative z-10 min-h-[200px] sm:min-h-[256px]'
       }`}
     >
@@ -25,7 +25,7 @@ const Cart = ({
       </h3>
 
       <p
-        className={`mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed ${
+        className={`mb-3 sm:mb-4 font-light! text-base! leading-relaxed ${
           isExpanded ? 'text-[var(--color-cream)]!' : 'text-[#5B4739]'
         }`}
       >

@@ -7,10 +7,10 @@ import tasker from '../../assets/tasker.png';
 const FooterCompo = () => {
   return (
     <div
-      className='overflow-hidden relative'
+      id='footer'
+      className='overflow-hidden relative min-h-[75vh] md:min-h-[70vh] lg:min-h-[80vh]'
       style={{
         backgroundColor: 'var(--color-blue)',
-        minHeight: 'clamp(60vh, 80vh, 90vh)',
       }}
     >
       <div className='pt-8 px-6 xl:px-12 2xl:px-16 h-full relative'>
@@ -141,7 +141,25 @@ const FooterCompo = () => {
               fontWeight: 400,
             }}
           >
-            Designed by Audrey and developed by Alexis Helm
+            Designed by Audrey and developed by{' '}
+            <a
+              href='https://github.com/Lydoww'
+              target='_blank'
+              rel='noopener noreferrer'
+              style={{
+                color: 'var(--color-cream)',
+                textDecoration: 'underline',
+                textUnderlineOffset: '2px',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = 'var(--color-orange)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = 'var(--color-cream)';
+              }}
+            >
+              Alexis Helm
+            </a>
           </p>
         </div>
       </div>
@@ -149,7 +167,7 @@ const FooterCompo = () => {
       <div className='absolute bottom-0 left-0 right-0 pointer-events-none'>
         <img
           src={BBS}
-          alt='Bright Brand Studio'
+          alt='Bright Brand Studio logo and branding elements'
           className='w-full h-auto object-contain object-bottom'
           style={{
             display: 'block',

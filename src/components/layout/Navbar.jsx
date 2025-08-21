@@ -52,7 +52,7 @@ const Navbar = () => {
               src={Logo}
               alt='logo of bright brand studio'
               className={`transition-all duration-300 ${
-                isScrolled ? 'w-12 sm:w-14' : 'w-24 sm:w-28 lg:w-32'
+                isScrolled ? 'w-16 sm:w-20 lg:w-32' : 'w-32 sm:w-36 lg:w-60'
               }`}
             />
           </a>
@@ -124,7 +124,6 @@ const Navbar = () => {
           }`}
         >
           <nav className='flex flex-col  rounded-lg shadow-lg'>
-            <MobileAnchor label='Home' target='home' onClick={handleClick} />
             <MobileAnchor
               label='Services'
               target='services'
@@ -133,6 +132,11 @@ const Navbar = () => {
             <MobileAnchor
               label='About me'
               target='about'
+              onClick={handleClick}
+            />
+            <MobileAnchor
+              label='Portfolio'
+              target='portfolio'
               onClick={handleClick}
             />
             <MobileAnchor
